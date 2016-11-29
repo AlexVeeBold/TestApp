@@ -1,0 +1,37 @@
+// COMObject.idl : IDL source for COMObject
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (COMObject.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(403A9F72-C2F8-4745-8702-23514ECAFB05),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface ISMNameObject : IDispatch{
+	[id(1)] HRESULT GetSharedMemoryName([out,retval] BSTR* name);
+	[id(2)] HRESULT GetNameSize([out,retval] ULONG* size);
+	[id(3)] HRESULT GetRandomName([out,retval] BSTR* name);
+};
+[
+	uuid(401A28FC-7A64-4BA5-80C2-B139E3E00A42),
+	version(1.0),
+]
+library COMObjectLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(C8E0A315-35EF-49CB-ABA7-B134E14DABA9)		
+	]
+	coclass SMNameObject
+	{
+		[default] interface ISMNameObject;
+	};
+};
+
